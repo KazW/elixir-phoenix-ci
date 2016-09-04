@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
 # Original Author
 # Marcelo Gonçalves
@@ -26,14 +26,14 @@ RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
   && apt-get install -y elixir esl-erlang \
   && rm erlang-solutions_1.0_all.deb
 
-ENV PHOENIX_VERSION 1.1.4
+ENV PHOENIX_VERSION 1.2.1
 
 # install the Phoenix Mix archive
 RUN mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new-$PHOENIX_VERSION.ez
 
 # install Node.js (>= 5.0.0) and NPM in order to satisfy brunch.io dependencies
 # See http://www.phoenixframework.org/docs/installation#section-node-js-5-0-0-
-RUN curl -sL https://deb.nodesource.com/setup_5.x | bash - && apt-get install -y nodejs
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y nodejs
 
 # install Hex and Rebar
 RUN yes | mix local.hex \
