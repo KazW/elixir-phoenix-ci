@@ -35,12 +35,14 @@ build:
       code: |
         if [ -d "$WERCKER_CACHE_DIR/_build" ]; then
           debug "copying _build directoy from cache."
+          rm -rf _build
           cp -r $WERCKER_CACHE_DIR/_build .
         else
           debug "Unable to find previous _build directory."
         fi
         if [ -d "$WERCKER_CACHE_DIR/deps" ]; then
-          debug "copying _build directoy from cache."
+          debug "copying deps directoy from cache."
+          rm -rf deps
           cp -r $WERCKER_CACHE_DIR/deps .
         else
           debug "Unable to find previous deps directory."
